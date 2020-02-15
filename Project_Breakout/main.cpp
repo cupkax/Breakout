@@ -5,7 +5,7 @@ int main(int argc, char* argv[])
 	// Create breakout game object
 	Breakout* breakout = new Breakout();
 
-	// Initialize breakout
+	// Initialize SDL and Breakout
 	if (breakout->Init())
 	{
 		breakout->Run();

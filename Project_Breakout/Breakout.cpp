@@ -41,7 +41,7 @@ bool Breakout::Init()
 		return false;
 	}
 
-	// Initialise Timings
+	// Initialisations for fps and deltatime
 	lastTick = SDL_GetTicks();
 	fpsTick = lastTick;
 	framerate = 0;
@@ -71,12 +71,16 @@ void Breakout::Run()
 
 	// Initialisation loop [ http://rembound.com/articles/porting-pong-from-flash-to-cpp]
 	while (isGameRunning)
-		// Events
 	{
 		SDL_Event e;
 		if (SDL_PollEvent(&e))
 		{
 			if (e.type == SDL_QUIT)
+			{
+				break;
+			}
+			// Exit game on "Escape"
+			if (e.key.keysym.sym == SDLK_ESCAPE)
 			{
 				break;
 			}
@@ -137,6 +141,7 @@ void Breakout::BallStick()
 
 void Breakout::Update(float dt)
 {
+	SDL_SetRelativeMouseMode(SDL_TRUE); // Constrain and hide mouse in window
 
 	// Mouse Input
 	int mousex, mousey;
