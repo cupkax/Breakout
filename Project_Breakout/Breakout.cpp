@@ -78,6 +78,11 @@ void Breakout::Run()
 			{
 				break;
 			}
+
+			if (e.key.keysym.sym == SDLK_ESCAPE)
+			{
+				break;
+			}
 		}
 
 		// Initialise delta and framerate
