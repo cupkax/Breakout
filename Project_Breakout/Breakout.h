@@ -1,3 +1,6 @@
+#ifndef BREAKOUT_H
+#define BREAKOUT_H
+
 #include <SDL.h>
 #include<SDL_image.h>
 #include<stdio.h>
@@ -65,3 +68,4 @@ private:
 	void CheckBallBrickCollision();// Check Ball-Brick Collision  
 	int GetBricks(); // Returns the number of bricks in the level
 };
+#endif // !BREAKOUT_H

@@ -25,7 +25,7 @@ void PlayField::Update(float dt)
 
 void PlayField::Render(float dt)
 {
-	// Bricks Rendering (radboud.com)
+	// Bricks Rendering  [http://rembound.com/articles/porting-pong-from-flash-to-cpp]
 	for (int i = 0; i < PLAYFIELD_WIDTH; i++)
 	{
 		for (int j = 0; j < PLAYFIELD_HEIGHT; j++)
@@ -46,8 +46,8 @@ void PlayField::Render(float dt)
 			srcrect.h = BRICK_HEIGHT;
 
 			SDL_Rect dstrect;
-			dstrect.x = posX + i * BRICK_WIDTH;
-			dstrect.y = posY + j * BRICK_HEIGHT;
+			dstrect.x = posX + (i * BRICK_WIDTH);
+			dstrect.y = posY + (j * BRICK_HEIGHT);
 			dstrect.w = BRICK_WIDTH;
 			dstrect.h = BRICK_HEIGHT;
 

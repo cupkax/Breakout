@@ -2,6 +2,7 @@
 
 PlayerData::PlayerData(SDL_Renderer* renderer) : Common(renderer)
 {
+	// Number of player lives
 	playerLives = 3;
 }
 PlayerData::~PlayerData()
@@ -23,6 +24,7 @@ void PlayerData::Update(SDL_Renderer* renderer)
 
 void PlayerData::Render(float dt)
 {
+	// Player Data rendering
 	texW = 32;
 	texH = 32;
 	SDL_QueryTexture(texture, NULL, NULL, &texW, &texH);

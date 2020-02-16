@@ -25,11 +25,12 @@ void Common::Render(float delta)
 
 }
 
-bool Common::Collides(Common* other)
-{
-	if (posX + width > other->posX&& posX < other->posX + other->width &&
-		posY + height > other->posY&& posY < other->posY + other->height) {
-		return true;
-	}
-	return false;
-}
+// Collision
+//bool Common::Collides(Common* other)
+//{
+//	if (posX + width > other->posX&& posX < other->posX + other->width &&
+//		posY + height > other->posY&& posY < other->posY + other->height) {
+//		return true;
+//	}
+//	return false;
+//}

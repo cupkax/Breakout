@@ -1,5 +1,5 @@
-#ifndef BALL_H_
-#define BALL_H_
+#ifndef BALL_H
+#define BALL_H
 
 #include "Common.h"
 
@@ -13,12 +13,14 @@ public:
 	Ball(SDL_Renderer* renderer);
 	~Ball();
 
+	float _dirX, _dirY;
 	void Update(float dt);
 	void Render(float dt);
 
 	// Ball Movement Attributes
 	void BallMovement(float dirX, float dirY);
-	float _dirX, _dirY;
+
+	bool Collides(Common* other);
 
 
 private:
@@ -26,5 +28,4 @@ private:
 	SDL_Texture* ballTexture;
 };
 
-#endif // !BALL_H_
-
+#endif // !BALL_H

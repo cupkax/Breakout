@@ -1,3 +1,6 @@
+#ifndef PLAYFIELD_H
+#define PLAYFIELD_H
+
 #include"Common.h" 
 
 // Playing Field and Brick Dimensions
@@ -29,3 +32,4 @@ public:
 private:
 	SDL_Texture* brickTexture;
 };
+#endif // !PLAYFIELD_H

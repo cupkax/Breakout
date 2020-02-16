@@ -1,6 +1,7 @@
+#ifndef PLAYERDATA_H
+#define PLAYEREDATA_H
+
 #include "Common.h"
-
-
 
 class PlayerData : public Common
 {
@@ -20,3 +21,4 @@ private:
 	SDL_Texture* texture;
 	SDL_Surface* surface;
 };
+#endif // !PLAYERDATA_H

@@ -1,3 +1,6 @@
+#ifndef PADDLE_H
+#define PADDLE_H
+
 #include "Common.h"
 
 class Paddle : public Common
@@ -12,3 +15,4 @@ public:
 private:
 	SDL_Texture* paddleTexture;
 };
+#endif // !PADDLE_H

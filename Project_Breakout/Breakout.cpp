@@ -13,7 +13,6 @@ Breakout::Breakout()
 // Breakout Destructor
 Breakout::~Breakout()
 {
-
 }
 
 bool Breakout::Init()
@@ -79,11 +78,6 @@ void Breakout::Run()
 			{
 				break;
 			}
-			// Exit game on "Escape"
-			if (e.key.keysym.sym == SDLK_ESCAPE)
-			{
-				break;
-			}
 		}
 
 		// Initialise delta and framerate
@@ -141,6 +135,15 @@ void Breakout::BallStick()
 
 void Breakout::Update(float dt)
 {
+	// Quit game on key press
+	SDL_Event e;
+	if (SDL_PollEvent(&e)) {
+		if (e.key.keysym.sym == SDLK_ESCAPE)
+		{
+			SDL_QUIT;
+		}
+	}
+
 	SDL_SetRelativeMouseMode(SDL_TRUE); // Constrain and hide mouse in window
 
 	// Mouse Input
@@ -164,6 +167,7 @@ void Breakout::Update(float dt)
 		BallStick();
 	}
 
+	// Collision Checks
 	CheckSidesCollision();
 	BallPaddleCollision();
 	CheckBallBrickCollision();
@@ -186,19 +190,6 @@ void Breakout::Update(float dt)
 	}
 }
 
-// Decrement Life and terminate application if no lives left
-void Breakout::LoseLife()
-{
-	if (playerdata->playerLives > 1)
-	{
-		playerdata->playerLives--; // Decrement player life
-	}
-	else
-	{
-		isGameRunning = false; // Set game running to false and close game window
-	}
-}
-
 // Set paddle X-coordinate for input movement
 void Breakout::SetPaddleX(float x)
 {
@@ -218,6 +209,19 @@ void Breakout::SetPaddleX(float x)
 		newx = x;
 	}
 	paddle->posX = newx;
+}
+
+// Decrement Life and terminate application if no lives left
+void Breakout::LoseLife()
+{
+	if (playerdata->playerLives > 1)
+	{
+		playerdata->playerLives--; // Decrement player life
+	}
+	else
+	{
+		isGameRunning = false; // Set game running to false and close game window
+	}
 }
 
 // Check ball to side collisions. Reflect ball when hit on window sides

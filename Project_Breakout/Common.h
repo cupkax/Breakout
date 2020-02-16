@@ -1,5 +1,5 @@
-#ifndef COMMON_H_
-#define COMMON_H_
+#ifndef COMMON_H
+#define COMMON_H
 
 #include <SDL.h>
 #include <SDL_image.h>
@@ -17,10 +17,9 @@ public:
 	virtual void Update(float delta);
 	virtual void Render(float delta);
 
-	bool Collides(Common* other);
+	//bool Collides(Common* other);
 protected:
 	SDL_Renderer* renderer;
 
 };
-
-#endif // !COMMON_H_
+#endif // !COMMON_H

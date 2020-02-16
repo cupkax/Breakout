@@ -2,12 +2,11 @@
 
 Ball::Ball(SDL_Renderer* renderer) : Common(renderer)
 {
-	SDL_Surface* surface = IMG_Load("ball.png"); // Ball Image
+	SDL_Surface* surface = IMG_Load("ball.png");
 	ballTexture = SDL_CreateTextureFromSurface(renderer, surface);
 
 	width = 16;
 	height = 16;
-
 }
 
 Ball::~Ball()
@@ -41,4 +40,13 @@ void Ball::BallMovement(float newDirX, float newDirY)
 	float length = sqrtf(newDirX * newDirX + newDirY * newDirY);
 	_dirX = BALL_MOVESPEED * (newDirX / length);
 	_dirY = BALL_MOVESPEED * (newDirY / length);
+}
+
+bool Ball::Collides(Common* other)
+{
+	if (posX + width > other->posX&& posX < other->posX + other->width &&
+		posY + height > other->posY&& posY < other->posY + other->height) {
+		return true;
+	}
+	return false;
 }
