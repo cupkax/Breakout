@@ -30,8 +30,8 @@ private:
 	// Breakout Game Renderer
 	SDL_Renderer* breakoutRenderer;
 
-	// Breakout Texture
-	SDL_Texture* breakoutTexture;
+	//// Breakout Texture
+	//SDL_Texture* breakoutTexture; // Redundant
 
 	// Timing
 	unsigned int lastTick, fpsTick, framerate, framecount;

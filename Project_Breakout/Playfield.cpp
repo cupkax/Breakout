@@ -58,6 +58,7 @@ void PlayField::Render(float dt)
 
 void PlayField::NewLevel()
 {
+	// Populating the level
 	for (int i = 0; i < PLAYFIELD_WIDTH; i++)
 	{
 		for (int j = 0; j < PLAYFIELD_HEIGHT; j++)
