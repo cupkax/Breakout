@@ -19,7 +19,6 @@ bool Breakout::Init()
 {
 	// Initialise SDL
 	SDL_Init(SDL_INIT_VIDEO);
-
 	// Initialise TTF
 	TTF_Init();
 
@@ -55,10 +54,7 @@ void Breakout::DumpDestroy()
 {
 	SDL_DestroyWindow(breakoutWindow);
 	SDL_DestroyRenderer(breakoutRenderer);
-	delete playfield;
-	delete ball;
-	delete paddle;
-	//SDL_DestroyTexture(breakoutTexture); // Redundant
+	SDL_DestroyTexture(breakoutTexture);
 }
 
 // Initialise game assets
@@ -72,26 +68,24 @@ void Breakout::Run()
 	// Create new game instance
 	NewGame();
 
-	// Initialisation loop [  ]
+	// Initialisation loop [ http://rembound.com/articles/porting-pong-from-flash-to-cpp]
 	while (isGameRunning)
 	{
-		// Events
 		SDL_Event e;
 		if (SDL_PollEvent(&e))
 		{
-			if ((e.type == SDL_QUIT) || e.key.keysym.sym == SDLK_ESCAPE)
+			if (e.type == SDL_QUIT)
 			{
 				break;
 			}
 
-			//if (e.key.keysym.sym == SDLK_ESCAPE)
-			//{
-			//	break;
-			//}
+			if (e.key.keysym.sym == SDLK_ESCAPE)
+			{
+				break;
+			}
 		}
 
-	http://rembound.com/articles/porting-pong-from-flash-to-cpp
-	// Initialise delta and framerate
+		// Initialise delta and framerate
 		unsigned int curtick = SDL_GetTicks();
 		float dt = (curtick - lastTick) / 1000.0f;
 		if (curtick - fpsTick >= FPS_DELAY)
@@ -110,12 +104,10 @@ void Breakout::Run()
 		Update(dt);
 		Render(dt);
 	}
-
-	// REDUNDANT, MOVED TO DUMP DESTROY
-	//// Delete Assets
-	//delete playfield;
-	//delete ball;
-	//delete paddle;
+	// Delete Assets
+	delete playfield;
+	delete ball;
+	delete paddle;
 
 	// Free Resources
 	DumpDestroy();
@@ -129,6 +121,7 @@ void Breakout::NewGame()
 	// Create/Reset New Game and Reset Paddle position
 	playfield->NewLevel();
 	ResetPaddle();
+
 }
 
 // Reset Paddle state
@@ -147,15 +140,14 @@ void Breakout::BallStick()
 
 void Breakout::Update(float dt)
 {
-	// REDUNDANT
-	//// Quit game on key press
-	//SDL_Event e;
-	//if (SDL_PollEvent(&e)) {
-	//	if (e.key.keysym.sym == SDLK_ESCAPE)
-	//	{
-	//		SDL_QUIT;
-	//	}
-	//}
+	// Quit game on key press
+	SDL_Event e;
+	if (SDL_PollEvent(&e)) {
+		if (e.key.keysym.sym == SDLK_ESCAPE)
+		{
+			SDL_QUIT;
+		}
+	}
 
 	SDL_SetRelativeMouseMode(SDL_TRUE); // Constrain and hide mouse in window
 
@@ -171,7 +163,7 @@ void Breakout::Update(float dt)
 		if (ballStickToPaddle)
 		{
 			ballStickToPaddle = false;
-			ball->BallMovement(-1, -1); // Suggestion - Random x-coordinate
+			ball->BallMovement(-1, -1);
 		}
 	}
 
@@ -196,7 +188,6 @@ void Breakout::Update(float dt)
 	playfield->Update(dt);
 	paddle->Update(dt);
 	playerdata->Update(breakoutRenderer);
-
 
 	if (!ballStickToPaddle)
 	{
@@ -300,7 +291,6 @@ void Breakout::BallPaddleCollision()
 	// Get ball center x-coor
 	float ballcenterx = ball->posX + ball->width / 2.0f;
 
-	// Get paddle center x-coor
 	float paddlecenterx = paddle->posX + paddle->width / 2.0f;
 
 	// Check if ball collided with paddle
@@ -308,6 +298,8 @@ void Breakout::BallPaddleCollision()
 	{
 		ball->posY = paddle->posY - ball->height;
 		ball->BallMovement(BallPaddleReflection(ballcenterx - paddle->posX), -1);
+		//ball->BallDirection(BallPaddleReflection(paddlecenterx - paddle->posx), -1); REFLECT BALLS STRIGHT UP
+
 	}
 }
 
@@ -379,6 +371,8 @@ void Breakout::BallBrickReflection(int dirindex)
 
 	// Reflected direction is product of old direction with new factors
 	ball->BallMovement(mulx * ball->_dirX, muly * ball->_dirY);
+
+
 }
 
 
