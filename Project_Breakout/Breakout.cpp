@@ -281,7 +281,7 @@ float Breakout::BallPaddleReflection(float hitx)
 	*/
 	hitx -= paddle->width / 2.0f;
 
-	// Adjust reflection angle based on how far from the center the ball hits the paddle
+	// Adjust reflection based on how far from the center the ball hits the paddle
 	return 2.0f * (hitx / (paddle->width / 2.0f));
 }
 
