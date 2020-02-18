@@ -2,7 +2,7 @@
 A C++ breakout clone developed using SDL2 library.
 
 
-
+# Libraries
 
 SDL
 
@@ -10,7 +10,7 @@ SDL_image
 
 SDL_ttf
 
-Application Loop:
+# Application Loop
 Upon calling the update function:
 1. Game Window and Renderer are initialised through Init () and Run() is called.
 2. In Run(), game assets are initialised, framerate as well as deltatime loop are configured and NewGame(), Update() and Render() is called.
